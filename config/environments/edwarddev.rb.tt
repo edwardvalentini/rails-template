@@ -1,0 +1,4 @@
+# edwarddev configuration is identical to development, with some overrides
+# for hostname, etc.
+
+require_relative "./development"

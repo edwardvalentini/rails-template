@@ -31,7 +31,7 @@ gsub_file "config/initializers/filter_parameter_logging.rb", /\[:password\]/ do
 end
 
 apply "config/environments/development.rb"
-apply "config/environments/edwarddev.rb"
+template "config/environments/edwarddev.rb.tt"
 apply "config/environments/production.rb"
 apply "config/environments/test.rb"
 template "config/environments/staging.rb.tt"
