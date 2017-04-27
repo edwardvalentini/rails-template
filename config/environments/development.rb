@@ -16,6 +16,6 @@ insert_into_file "config/environments/development.rb", :before => /^end/ do
   <<-RUBY
 
   # Automatically inject JavaScript needed for LiveReload.
-  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
+  # config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
   RUBY
 end
