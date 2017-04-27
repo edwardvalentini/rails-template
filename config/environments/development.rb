@@ -13,6 +13,8 @@ insert_into_file "config/environments/development.rb", :after => mailer_regex do
 end
 
 insert_into_file "config/environments/development.rb", :before => /^end/ do
+  config.eager_load = false
+
   <<-RUBY
 
   # Automatically inject JavaScript needed for LiveReload.
