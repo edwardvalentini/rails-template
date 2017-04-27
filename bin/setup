@@ -7,7 +7,7 @@ def setup!
     run  "bundle install"
     run  "bundle exec overcommit --sign"
     run  "bundle exec overcommit --install"
-    copy "example.env"
+    # copy "example.env"
     copy "config/database.example.yml"
     test_local_env_contains_required_keys
     run  "bin/rake db:create:all"
@@ -68,14 +68,14 @@ def copy(example_path)
 end
 
 def test_local_env_contains_required_keys
-  keys = ->(f) { IO.readlines(f).map { |l| l[/^([^#\s][^=\s]*)/, 1] }.compact }
-
-  log(:yellow, "test .env contents") do
-    missing = keys["example.env"] - keys[".env"]
-    if missing.any?
-      die("Your .env file is missing #{missing.join(', ')}")
-    end
-  end
+  # keys = ->(f) { IO.readlines(f).map { |l| l[/^([^#\s][^=\s]*)/, 1] }.compact }
+  #
+  # log(:yellow, "test .env contents") do
+  #   missing = keys["example.env"] - keys[".env"]
+  #   if missing.any?
+  #     die("Your .env file is missing #{missing.join(', ')}")
+  #   end
+  # end
 end
 
 def log(color, message, out=$stdout, &block)

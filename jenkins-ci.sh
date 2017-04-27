@@ -21,7 +21,7 @@ gem install bundler --conservative --no-document -v $bundler_version
 
 # Set up local config
 cp config/database.example.yml config/database.yml
-cp example.env .env
+# cp example.env .env
 
 bundle install --deployment --retry=3
 
