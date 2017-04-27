@@ -9,7 +9,6 @@ insert_into_file "config/environments/production.rb",
   # Anyway, gzip alone gets us about 70% of the benefits of minify+gzip.
   config.assets.js_compressor = false
   config.assets.css_compressor = false
-  config.eager_load = true
   RUBY
 end
 
