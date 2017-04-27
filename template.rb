@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = "~> 5.0.0"
+RAILS_REQUIREMENT = "~> 5.1.0.rc2"
 
 def apply_template!
   assert_minimum_rails_version
@@ -8,17 +8,19 @@ def apply_template!
 
   template "Gemfile.tt", :force => true
 
-  template "DEPLOYMENT.md.tt"
-  template "PROVISIONING.md.tt"
+  # template "DEPLOYMENT.md.tt"
+  # template "PROVISIONING.md.tt"
+  remove_file "README.md"
   template "README.md.tt", :force => true
   remove_file "README.rdoc"
 
-  template "example.env.tt"
+  # template "example.env.tt"
   copy_file "gitignore", ".gitignore", :force => true
-  copy_file "jenkins-ci.sh", :mode => :preserve
-  copy_file "overcommit.yml", ".overcommit.yml"
+  # copy_file "jenkins-ci.sh", :mode => :preserve
+  # copy_file "overcommit.yml", ".overcommit.yml"
   template "ruby-version.tt", ".ruby-version"
-  copy_file "simplecov", ".simplecov"
+  template "ruby-gemset.tt", ".ruby-gemset"
+  # copy_file "simplecov", ".simplecov"
 
   copy_file "Capfile"
   copy_file "Guardfile"
@@ -32,7 +34,7 @@ def apply_template!
   apply "public/template.rb"
   apply "test/template.rb"
 
-  apply "variants/bootstrap/template.rb" if apply_bootstrap?
+  # apply "variants/bootstrap/template.rb" if apply_bootstrap?
 
   git :init unless preexisting_git_repo?
   empty_directory ".git/safe"
@@ -41,8 +43,7 @@ def apply_template!
   generate_spring_binstubs
 
   binstubs = %w(
-    annotate brakeman bundler-audit capistrano guard rubocop sidekiq
-    terminal-notifier
+    annotate brakeman bundler-audit capistrano guard rubocop terminal-notifier
   )
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')}"
 
@@ -73,7 +74,7 @@ def add_template_repository_to_source_path
     at_exit { FileUtils.remove_entry(tempdir) }
     git :clone => [
       "--quiet",
-      "https://github.com/mattbrictson/rails-template.git",
+      "https://github.com/edwardvalentini/rails-template.git",
       tempdir
     ].map(&:shellescape).join(" ")
   else

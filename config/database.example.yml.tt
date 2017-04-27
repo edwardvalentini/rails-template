@@ -21,6 +21,13 @@ development:
   min_messages: WARNING
   pool: 5
 
+edwarddev:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= app_name %>_development
+  min_messages: WARNING
+  pool: 5
+
   # The above config should "just work" on Mac with PostgreSQL
   # installed via Homebrew. If it doesn't work for you, try the
   # UNIX domain socket or TCP socket methods as shown here:
